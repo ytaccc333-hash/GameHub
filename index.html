@@ -12,30 +12,21 @@
   <h2>Authorization</h2>
 
   <input type="text" id="codeInput" placeholder="Enter code">
-
   <button onclick="checkCode()">Enter</button>
 
   <p id="error"></p>
 </div>
 
-<!-- MAIN -->
+<!-- MAIN APP -->
 <div id="mainPage" class="hidden">
 
   <div class="menu">
 
-    <!-- TOP BAR -->
     <div class="topbar">
-
-      <input id="search" type="text" placeholder="Search websites..." onkeyup="searchLinks()">
-
-      <div class="adminBox">
-        <input type="password" id="adminInput" placeholder="Admin code">
-        <button onclick="checkAdmin()">Admin Panel</button>
-      </div>
-
+      <input id="search" type="text" placeholder="Search..." onkeyup="searchLinks()">
+      <button onclick="openAdmin()">Admin Panel</button>
     </div>
 
-    <!-- TABS -->
     <div class="tabs">
       <button onclick="showTab('games')">Unblocked Games</button>
       <button onclick="showTab('sites')">Websites</button>
@@ -44,28 +35,39 @@
     <!-- GAMES -->
     <div id="games" class="tab active">
       <h2>Unblocked Games</h2>
+
       <div class="scroll">
-
-        <a href="https://solvecalc.net/" target="_blank">GAME</a>
-        <a href="https://games.macrolorblx.com/" target="_blank">Unblocked Website 1</a>
-
+        <a href="https://solvecalc.net/" target="_blank">Unblocked Game 1</a>
+        <a href="https://games.macrolorblx.com/" target="_blank">Unblocked Game 2</a>
+        <a href="https://sites.google.com/view/unblocked-game76" target="_blank">Unblocked Game 3</a>
+        <a href="https://duckmath.org/" target="_blank">Unblocked Game 4</a>
+        <a href="https://www.coolmathgames.com/" target="_blank">Unblocked Game 5</a>
       </div>
     </div>
 
     <!-- WEBSITES -->
     <div id="sites" class="tab">
       <h2>Websites</h2>
+
       <div class="scroll">
-
-        <a href="https://sites.google.com/view/unblocked-game76" target="_blank">Unblocked Website 2</a>
-        <a href="https://duckmath.org/" target="_blank">Unblocked Website 3</a>
-        <a href="https://www.edutoolslab.com/" target="_blank">Unblocked Website 4</a>
+        <a href="https://www.edutoolslab.com/" target="_blank">Study Tools</a>
         <a href="https://www.youtube.com" target="_blank">YouTube (No Ads)</a>
-
       </div>
     </div>
 
   </div>
+</div>
+
+<!-- ADMIN PAGE -->
+<div id="adminPage" class="hidden">
+
+  <div class="menu">
+    <h2>Admin Panel</h2>
+    <p>Welcome admin</p>
+
+    <button onclick="closeAdmin()">Back</button>
+  </div>
+
 </div>
 
 <script src="script.js"></script>
