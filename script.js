@@ -1,5 +1,5 @@
 
-// ================= FIREBASE =================
+// FIREBASE
 const firebaseConfig = {
   apiKey: "AIzaSyDJ7PGMsLzI_s9U5x-FZSHOv0cEjw5lC44",
   authDomain: "homejpagey.firebaseapp.com",
@@ -11,7 +11,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 
-// ================= LOGIN =================
+// LOGIN
 function checkCode() {
   const code = document.getElementById("codeInput").value;
 
@@ -24,26 +24,22 @@ function checkCode() {
 }
 
 
-// ================= MAIN TABS =================
+// TABS
 function showTab(tabId) {
-  document.querySelectorAll("#games, #sites").forEach(tab => {
-    tab.style.display = "none";
-  });
-
-  const target = document.getElementById(tabId);
-  if (target) target.style.display = "block";
+  document.querySelectorAll("#games, #sites").forEach(t => t.style.display = "none");
+  document.getElementById(tabId).style.display = "block";
 }
 
 
-// ================= ADMIN POPUP =================
+// ADMIN POPUP
 function openAdmin() {
   document.getElementById("adminPopup").classList.remove("hidden");
 }
 
 function closeAdminPopup() {
   document.getElementById("adminPopup").classList.add("hidden");
-  document.getElementById("adminError").textContent = "";
   document.getElementById("adminCodeInput").value = "";
+  document.getElementById("adminError").textContent = "";
 }
 
 function checkAdminCode() {
@@ -58,58 +54,48 @@ function checkAdminCode() {
 }
 
 
-// ================= ADMIN CLOSE =================
+// CLOSE ADMIN
 function closeAdmin() {
   document.getElementById("adminScreen").classList.remove("active");
 }
 
 
-// ================= ADMIN TABS =================
+// ADMIN TABS
 function adminTab(tabId) {
-  document.querySelectorAll("#adminScreen .adminTab").forEach(tab => {
-    tab.style.display = "none";
-  });
-
-  const target = document.getElementById(tabId);
-  if (target) target.style.display = "block";
+  document.querySelectorAll(".adminTab").forEach(t => t.style.display = "none");
+  document.getElementById(tabId).style.display = "block";
 }
 
 
-// ================= ADD GAME =================
+// ADD GAME
 function addGame() {
-  const name = document.getElementById("gameName").value.trim();
-  const url = document.getElementById("gameURL").value.trim();
+  const name = document.getElementById("gameName").value;
+  const url = document.getElementById("gameURL").value;
 
-  if (!name || !url) return alert("Fill both fields");
+  if (!name || !url) return;
 
-  db.ref("games").push({
-    name,
-    url
-  });
+  db.ref("games").push({ name, url });
 
   document.getElementById("gameName").value = "";
   document.getElementById("gameURL").value = "";
 }
 
 
-// ================= ADD SITE =================
+// ADD SITE
 function addSite() {
-  const name = document.getElementById("siteName").value.trim();
-  const url = document.getElementById("siteURL").value.trim();
+  const name = document.getElementById("siteName").value;
+  const url = document.getElementById("siteURL").value;
 
-  if (!name || !url) return alert("Fill both fields");
+  if (!name || !url) return;
 
-  db.ref("sites").push({
-    name,
-    url
-  });
+  db.ref("sites").push({ name, url });
 
   document.getElementById("siteName").value = "";
   document.getElementById("siteURL").value = "";
 }
 
 
-// ================= LOAD GAMES =================
+// LOAD GAMES
 db.ref("games").on("value", snap => {
   const data = snap.val();
   const el = document.getElementById("gamesList");
@@ -117,19 +103,13 @@ db.ref("games").on("value", snap => {
   el.innerHTML = "";
   if (!data) return;
 
-  Object.values(data).forEach(item => {
-    if (!item?.name || !item?.url) return;
-
-    el.innerHTML += `
-      <a class="linkCard" href="${item.url}" target="_blank">
-        🎮 ${item.name}
-      </a>
-    `;
+  Object.values(data).forEach(i => {
+    el.innerHTML += `<a class="linkCard" href="${i.url}" target="_blank">🎮 ${i.name}</a>`;
   });
 });
 
 
-// ================= LOAD SITES =================
+// LOAD SITES
 db.ref("sites").on("value", snap => {
   const data = snap.val();
   const el = document.getElementById("sitesList");
@@ -137,30 +117,25 @@ db.ref("sites").on("value", snap => {
   el.innerHTML = "";
   if (!data) return;
 
-  Object.values(data).forEach(item => {
-    if (!item?.name || !item?.url) return;
-
-    el.innerHTML += `
-      <a class="linkCard" href="${item.url}" target="_blank">
-        🌐 ${item.name}
-      </a>
-    `;
+  Object.values(data).forEach(i => {
+    el.innerHTML += `<a class="linkCard" href="${i.url}" target="_blank">🌐 ${i.name}</a>`;
   });
 });
 
 
-// ================= SEARCH =================
+// SEARCH
 function searchLinks() {
   const input = document.getElementById("search").value.toLowerCase();
 
-  document.querySelectorAll(".linkCard").forEach(link => {
-    const text = link.innerText.toLowerCase();
-    link.style.display = text.includes(input) ? "block" : "none";
+  document.querySelectorAll(".linkCard").forEach(l => {
+    l.style.display = l.innerText.toLowerCase().includes(input)
+      ? "block"
+      : "none";
   });
 }
 
 
-// ================= ADMIN TOOLS =================
+// ADMIN TOOLS
 function clearSearch() {
   document.getElementById("search").value = "";
   searchLinks();
