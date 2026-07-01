@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Login Page</title>
+  <title>HomeJPageY</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- LOGIN BOX -->
+<!-- LOGIN -->
 <div id="loginBox" class="box">
-  <h2>Enter Authorization Code</h2>
+  <h2>Authorization</h2>
 
   <input type="text" id="codeInput" placeholder="Enter code">
 
@@ -18,20 +18,41 @@
   <p id="error"></p>
 </div>
 
-<!-- MAIN PAGE -->
-<div id="mainPage" class="box hidden">
-  <h1>Welcome</h1>
-  <p>Automatically updating unblocked websites</p>
+<!-- MAIN MENU -->
+<div id="mainPage" class="hidden">
 
-  <a href="https://solvecalc.net/" target="_blank">GAME</a>
-  <a href="https://games.macrolorblx.com/" target="_blank">Unblocked Website 1</a>
-  <a href="https://sites.google.com/view/unblocked-game76" target="_blank">Unblocked Website 2</a>
-  <a href="https://duckmath.org/" target="_blank">Unblocked Website 3</a>
-  <a href="https://www.edutoolslab.com/" target="_blank">Unblocked Website 4</a>
-  <a href="https://www.youtube.com" target="_blank">YouTube (No Ads)</a>
+  <div class="menu">
+
+    <div class="tabs">
+      <button onclick="showTab('games')">Unblocked Games</button>
+      <button onclick="showTab('sites')">Websites</button>
+    </div>
+
+    <!-- GAMES TAB -->
+    <div id="games" class="tab active">
+      <h2>Unblocked Games</h2>
+
+      <div class="scroll">
+        <a href="https://solvecalc.net/" target="_blank">GAME</a>
+        <a href="https://games.macrolorblx.com/" target="_blank">Unblocked Website 1</a>
+      </div>
+    </div>
+
+    <!-- WEBSITES TAB -->
+    <div id="sites" class="tab">
+      <h2>Websites</h2>
+
+      <div class="scroll">
+        <a href="https://sites.google.com/view/unblocked-game76" target="_blank">Unblocked Website 2</a>
+        <a href="https://duckmath.org/" target="_blank">Unblocked Website 3</a>
+        <a href="https://www.edutoolslab.com/" target="_blank">Unblocked Website 4</a>
+        <a href="https://www.youtube.com" target="_blank">YouTube (No Ads)</a>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
