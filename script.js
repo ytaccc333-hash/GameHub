@@ -47,3 +47,4 @@ function closeAdmin() {
   document.getElementById("adminPage").style.display = "none";
   document.getElementById("mainPage").style.display = "block";
 }
+ 
