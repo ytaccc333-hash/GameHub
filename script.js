@@ -1,3 +1,4 @@
+
 // ================= FIREBASE =================
 const firebaseConfig = {
   apiKey: "AIzaSyDJ7PGMsLzI_s9U5x-FZSHOv0cEjw5lC44",
@@ -25,52 +26,65 @@ function checkCode() {
 
 // ================= MAIN TABS =================
 function showTab(tabId) {
-  document.querySelectorAll("#mainScreen .tab").forEach(t => {
-    t.classList.remove("active");
+  document.querySelectorAll("#games, #sites").forEach(tab => {
+    tab.style.display = "none";
   });
 
-  const tab = document.getElementById(tabId);
-  if (tab) tab.classList.add("active");
+  const target = document.getElementById(tabId);
+  if (target) target.style.display = "block";
 }
 
 
-// ================= ADMIN OPEN/CLOSE =================
+// ================= ADMIN POPUP =================
 function openAdmin() {
-  const code = prompt("Enter admin code:");
+  document.getElementById("adminPopup").classList.remove("hidden");
+}
+
+function closeAdminPopup() {
+  document.getElementById("adminPopup").classList.add("hidden");
+  document.getElementById("adminError").textContent = "";
+  document.getElementById("adminCodeInput").value = "";
+}
+
+function checkAdminCode() {
+  const code = document.getElementById("adminCodeInput").value;
 
   if (code === "7765") {
+    closeAdminPopup();
     document.getElementById("adminScreen").classList.add("active");
   } else {
-    alert("Wrong admin code");
+    document.getElementById("adminError").textContent = "Wrong code!";
   }
 }
 
+
+// ================= ADMIN CLOSE =================
 function closeAdmin() {
   document.getElementById("adminScreen").classList.remove("active");
 }
 
 
-// ================= ADMIN TAB SWITCH (FIXED) =================
+// ================= ADMIN TABS =================
 function adminTab(tabId) {
-  document.querySelectorAll("#adminScreen .adminTab").forEach(t => {
-    t.style.display = "none";
+  document.querySelectorAll("#adminScreen .adminTab").forEach(tab => {
+    tab.style.display = "none";
   });
 
-  document.getElementById(tabId).style.display = "block";
+  const target = document.getElementById(tabId);
+  if (target) target.style.display = "block";
 }
 
 
 // ================= ADD GAME =================
 function addGame() {
-  const name = document.getElementById("gameName").value;
-  const url = document.getElementById("gameURL").value;
+  const name = document.getElementById("gameName").value.trim();
+  const url = document.getElementById("gameURL").value.trim();
 
   if (!name || !url) return alert("Fill both fields");
 
-  const newGame = db.ref("games").push();
-  newGame.set({
-    name: name,
-    url: url
+  db.ref("games").push({
+    name,
+    url
   });
 
   document.getElementById("gameName").value = "";
@@ -78,17 +92,16 @@ function addGame() {
 }
 
 
-// ================= ADD WEBSITE =================
+// ================= ADD SITE =================
 function addSite() {
-  const name = document.getElementById("siteName").value;
-  const url = document.getElementById("siteURL").value;
+  const name = document.getElementById("siteName").value.trim();
+  const url = document.getElementById("siteURL").value.trim();
 
   if (!name || !url) return alert("Fill both fields");
 
-  const newSite = db.ref("sites").push();
-  newSite.set({
-    name: name,
-    url: url
+  db.ref("sites").push({
+    name,
+    url
   });
 
   document.getElementById("siteName").value = "";
@@ -96,29 +109,43 @@ function addSite() {
 }
 
 
-// ================= REALTIME GAMES =================
+// ================= LOAD GAMES =================
 db.ref("games").on("value", snap => {
   const data = snap.val();
   const el = document.getElementById("gamesList");
 
   el.innerHTML = "";
+  if (!data) return;
 
-  for (let id in data) {
-    el.innerHTML += `<a href="${data[id].url}" target="_blank">${data[id].name}</a>`;
-  }
+  Object.values(data).forEach(item => {
+    if (!item?.name || !item?.url) return;
+
+    el.innerHTML += `
+      <a class="linkCard" href="${item.url}" target="_blank">
+        🎮 ${item.name}
+      </a>
+    `;
+  });
 });
 
 
-// ================= REALTIME SITES =================
+// ================= LOAD SITES =================
 db.ref("sites").on("value", snap => {
   const data = snap.val();
   const el = document.getElementById("sitesList");
 
   el.innerHTML = "";
+  if (!data) return;
 
-  for (let id in data) {
-    el.innerHTML += `<a href="${data[id].url}" target="_blank">${data[id].name}</a>`;
-  }
+  Object.values(data).forEach(item => {
+    if (!item?.name || !item?.url) return;
+
+    el.innerHTML += `
+      <a class="linkCard" href="${item.url}" target="_blank">
+        🌐 ${item.name}
+      </a>
+    `;
+  });
 });
 
 
@@ -126,10 +153,19 @@ db.ref("sites").on("value", snap => {
 function searchLinks() {
   const input = document.getElementById("search").value.toLowerCase();
 
-  const links = document.querySelectorAll(".tab.active a");
-
-  links.forEach(link => {
-    const match = link.innerText.toLowerCase().includes(input);
-    link.style.display = match ? "block" : "none";
+  document.querySelectorAll(".linkCard").forEach(link => {
+    const text = link.innerText.toLowerCase();
+    link.style.display = text.includes(input) ? "block" : "none";
   });
+}
+
+
+// ================= ADMIN TOOLS =================
+function clearSearch() {
+  document.getElementById("search").value = "";
+  searchLinks();
+}
+
+function reloadData() {
+  location.reload();
 }
