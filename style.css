@@ -1,11 +1,11 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   background: #05010a;
   color: white;
 }
 
-/* SCREEN SYSTEM (THIS FIXES BUG) */
+/* SCREEN SYSTEM */
 .screen {
   display: none;
   width: 100%;
@@ -18,45 +18,44 @@ body {
   display: flex;
 }
 
-/* GLOW */
+/* NEON ANIMATION */
 @keyframes glow {
-  0% { box-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; }
-  50% { box-shadow: 0 0 25px #d946ef, 0 0 50px #a855f7; }
-  100% { box-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; }
+  0% { box-shadow: 0 0 10px #a855f7; }
+  50% { box-shadow: 0 0 30px #d946ef; }
+  100% { box-shadow: 0 0 10px #a855f7; }
 }
 
-/* BOX / MENU */
+/* BOX */
 .box, .menu {
-  background: #000;
+  background: black;
   padding: 25px;
   border-radius: 15px;
   border: 2px solid #a855f7;
   animation: glow 2s infinite;
+  width: 420px;
   text-align: center;
-  width: 400px;
 }
 
 /* INPUT */
 input {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   margin-top: 10px;
-  border-radius: 8px;
-  border: none;
   background: #111;
   color: white;
+  border: none;
+  border-radius: 8px;
 }
 
 /* BUTTON */
 button {
   margin-top: 10px;
-  padding: 10px;
   width: 100%;
-  border: none;
-  border-radius: 8px;
+  padding: 10px;
   background: #a855f7;
-  font-weight: bold;
+  border: none;
   cursor: pointer;
+  font-weight: bold;
 }
 
 /* TABS */
@@ -70,7 +69,7 @@ button {
   width: 48%;
 }
 
-/* TAB CONTENT */
+/* CONTENT */
 .tab {
   display: none;
 }
