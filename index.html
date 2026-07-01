@@ -4,6 +4,10 @@
   <title>HomeJPageY</title>
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase (FIXED - REQUIRED) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 </head>
 
 <body>
@@ -51,7 +55,7 @@
     </div>
 
     <!-- SITES -->
-    <div id="sites" class="tab">
+    <div id="sites" class="tab" style="display:none;">
       <h2>Websites</h2>
       <div class="scroll" id="sitesList">
 
@@ -67,6 +71,7 @@
 
 <!-- ADMIN -->
 <div id="adminScreen" class="screen">
+
   <div class="menu">
 
     <h2>Admin Panel</h2>
@@ -77,7 +82,7 @@
     </div>
 
     <!-- ADD GAME -->
-    <div id="addGame" class="tab active">
+    <div id="addGame" class="adminTab">
       <h3>Add Game</h3>
 
       <input id="gameName" placeholder="Game name">
@@ -87,7 +92,7 @@
     </div>
 
     <!-- ADD WEBSITE -->
-    <div id="addSite" class="tab">
+    <div id="addSite" class="adminTab" style="display:none;">
       <h3>Add Website</h3>
 
       <input id="siteName" placeholder="Site name">
