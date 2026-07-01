@@ -2,24 +2,29 @@
 <html>
 <head>
   <title>HomeJPageY</title>
+
+  <!-- Firebase (IMPORTANT) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js"></script>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- LOGIN SCREEN -->
+<!-- LOGIN -->
 <div id="loginScreen" class="screen active">
   <div class="box">
     <h2>Authorization</h2>
 
-    <input type="text" id="codeInput" placeholder="Enter code">
+    <input id="codeInput" placeholder="Enter code">
     <button onclick="checkCode()">Enter</button>
 
     <p id="error"></p>
   </div>
 </div>
 
-<!-- MAIN SCREEN -->
+<!-- MAIN -->
 <div id="mainScreen" class="screen">
 
   <div class="menu">
@@ -36,46 +41,31 @@
 
     <div id="games" class="tab active">
       <h2>Unblocked Games</h2>
-      <div class="scroll">
-        <a href="https://solvecalc.net/" target="_blank">Unblocked Game 1</a>
-        <a href="https://games.macrolorblx.com/" target="_blank">Unblocked Game 2</a>
-        <a href="https://sites.google.com/view/unblocked-game76" target="_blank">Unblocked Game 3</a>
-        <a href="https://duckmath.org/" target="_blank">Unblocked Game 4</a>
-        <a href="https://www.coolmathgames.com/" target="_blank">Unblocked Game 5</a>
-      </div>
+      <div class="scroll" id="gamesList"></div>
     </div>
 
     <div id="sites" class="tab">
       <h2>Websites</h2>
-      <div class="scroll">
-        <a href="https://www.edutoolslab.com/" target="_blank">Study Tools</a>
-        <a href="https://www.youtube.com" target="_blank">YouTube (No Ads)</a>
-      </div>
+      <div class="scroll" id="sitesList"></div>
     </div>
 
   </div>
 </div>
 
-<!-- ADMIN SCREEN -->
+<!-- ADMIN -->
 <div id="adminScreen" class="screen">
-
   <div class="menu">
+    <h2>Admin Panel</h2>
 
-    <div class="tabs">
-      <button onclick="showAdminTab('tools')">Admin Tools</button>
-    </div>
-
-    <div id="tools" class="tab active">
-      <h2>Admin Tools</h2>
-      <p>Nothing here yet.</p>
+    <div class="tab active">
+      <h3>Admin Tools</h3>
+      <p>Nothing here yet</p>
     </div>
 
     <button onclick="closeAdmin()">Back</button>
-
   </div>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
- 
