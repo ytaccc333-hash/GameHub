@@ -18,7 +18,6 @@ function showTab(tabId) {
   document.getElementById(tabId).classList.add("active");
 }
 
-/* SEARCH BAR */
 function searchLinks() {
   let input = document.getElementById("search").value.toLowerCase();
   let links = document.querySelectorAll("a");
@@ -32,13 +31,19 @@ function searchLinks() {
   });
 }
 
-/* ADMIN (PLACEHOLDER ONLY) */
-function checkAdmin() {
-  const code = document.getElementById("adminInput").value;
+/* ADMIN PAGE */
+function openAdmin() {
+  const code = prompt("Enter admin code:");
 
   if (code === "7765") {
-    alert("Admin panel unlocked (not built yet)");
+    document.getElementById("mainPage").style.display = "none";
+    document.getElementById("adminPage").style.display = "flex";
   } else {
     alert("Wrong admin code");
   }
+}
+
+function closeAdmin() {
+  document.getElementById("adminPage").style.display = "none";
+  document.getElementById("mainPage").style.display = "block";
 }
