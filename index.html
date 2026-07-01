@@ -12,7 +12,7 @@
 
 <body>
 
-<!-- ================= LOGIN ================= -->
+<!-- LOGIN -->
 <div id="loginScreen" class="screen active">
   <div class="box">
     <h2>Authorization</h2>
@@ -24,30 +24,26 @@
   </div>
 </div>
 
-<!-- ================= MAIN ================= -->
+<!-- MAIN -->
 <div id="mainScreen" class="screen">
 
   <div class="menu">
 
-    <!-- TOP BAR -->
     <div class="topbar">
       <input id="search" placeholder="Search..." onkeyup="searchLinks()">
-      <button onclick="openAdmin()">Admin Panel</button>
+      <button onclick="openAdmin()">Admin</button>
     </div>
 
-    <!-- TABS -->
     <div class="tabs">
-      <button onclick="showTab('games')">Unblocked Games</button>
+      <button onclick="showTab('games')">Games</button>
       <button onclick="showTab('sites')">Websites</button>
     </div>
 
-    <!-- GAMES -->
     <div id="games" class="tab active">
-      <h2>Unblocked Games</h2>
+      <h2>Games</h2>
       <div class="scroll" id="gamesList"></div>
     </div>
 
-    <!-- SITES -->
     <div id="sites" class="tab" style="display:none;">
       <h2>Websites</h2>
       <div class="scroll" id="sitesList"></div>
@@ -56,7 +52,23 @@
   </div>
 </div>
 
-<!-- ================= ADMIN PANEL ================= -->
+<!-- ADMIN POPUP ONLY -->
+<div id="adminPopup" class="popup hidden">
+  <div class="popupBox">
+
+    <h2>Admin Access</h2>
+
+    <input id="adminCodeInput" placeholder="Enter admin code">
+
+    <button onclick="checkAdminCode()">Enter</button>
+    <button onclick="closeAdminPopup()">Cancel</button>
+
+    <p id="adminError"></p>
+
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
 <div id="adminScreen" class="screen">
 
   <div class="menu">
@@ -70,43 +82,19 @@
       <button onclick="reloadData()">Reload</button>
     </div>
 
-    <!-- ADD GAME -->
     <div id="addGame" class="adminTab">
-      <h3>Add Game</h3>
-
       <input id="gameName" placeholder="Game name">
       <input id="gameURL" placeholder="Game URL">
-
       <button onclick="addGame()">Add Game</button>
     </div>
 
-    <!-- ADD WEBSITE -->
     <div id="addSite" class="adminTab" style="display:none;">
-      <h3>Add Website</h3>
-
       <input id="siteName" placeholder="Site name">
       <input id="siteURL" placeholder="Site URL">
-
       <button onclick="addSite()">Add Website</button>
     </div>
 
     <button onclick="closeAdmin()">Close Admin</button>
-
-  </div>
-</div>
-
-<!-- ================= ADMIN POPUP ================= -->
-<div id="adminPopup" class="popup hidden">
-  <div class="popupBox">
-
-    <h2>Admin Access</h2>
-
-    <input id="adminCodeInput" placeholder="Enter admin code">
-
-    <button onclick="checkAdminCode()">Enter</button>
-    <button onclick="closeAdminPopup()">Cancel</button>
-
-    <p id="adminError"></p>
 
   </div>
 </div>
