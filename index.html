@@ -18,35 +18,50 @@
   <p id="error"></p>
 </div>
 
-<!-- MAIN MENU -->
+<!-- MAIN -->
 <div id="mainPage" class="hidden">
 
   <div class="menu">
 
+    <!-- TOP BAR -->
+    <div class="topbar">
+
+      <input id="search" type="text" placeholder="Search websites..." onkeyup="searchLinks()">
+
+      <div class="adminBox">
+        <input type="password" id="adminInput" placeholder="Admin code">
+        <button onclick="checkAdmin()">Admin Panel</button>
+      </div>
+
+    </div>
+
+    <!-- TABS -->
     <div class="tabs">
       <button onclick="showTab('games')">Unblocked Games</button>
       <button onclick="showTab('sites')">Websites</button>
     </div>
 
-    <!-- GAMES TAB -->
+    <!-- GAMES -->
     <div id="games" class="tab active">
       <h2>Unblocked Games</h2>
-
       <div class="scroll">
+
         <a href="https://solvecalc.net/" target="_blank">GAME</a>
         <a href="https://games.macrolorblx.com/" target="_blank">Unblocked Website 1</a>
+
       </div>
     </div>
 
-    <!-- WEBSITES TAB -->
+    <!-- WEBSITES -->
     <div id="sites" class="tab">
       <h2>Websites</h2>
-
       <div class="scroll">
+
         <a href="https://sites.google.com/view/unblocked-game76" target="_blank">Unblocked Website 2</a>
         <a href="https://duckmath.org/" target="_blank">Unblocked Website 3</a>
         <a href="https://www.edutoolslab.com/" target="_blank">Unblocked Website 4</a>
         <a href="https://www.youtube.com" target="_blank">YouTube (No Ads)</a>
+
       </div>
     </div>
 
