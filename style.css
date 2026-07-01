@@ -3,10 +3,19 @@ body {
   font-family: Arial, sans-serif;
   background: #05010a;
   color: white;
+}
+
+/* SCREEN SYSTEM (THIS FIXES BUG) */
+.screen {
+  display: none;
+  width: 100%;
   height: 100vh;
-  display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.screen.active {
+  display: flex;
 }
 
 /* GLOW */
@@ -16,7 +25,7 @@ body {
   100% { box-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; }
 }
 
-/* LOGIN + MENU */
+/* BOX / MENU */
 .box, .menu {
   background: #000;
   padding: 25px;
@@ -24,6 +33,7 @@ body {
   border: 2px solid #a855f7;
   animation: glow 2s infinite;
   text-align: center;
+  width: 400px;
 }
 
 /* INPUT */
@@ -60,6 +70,15 @@ button {
   width: 48%;
 }
 
+/* TAB CONTENT */
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
 /* SCROLL */
 .scroll {
   max-height: 250px;
@@ -78,17 +97,6 @@ a:hover {
   color: white;
 }
 
-.hidden {
-  display: none;
-}
-
 #error {
   color: red;
-}
-
-/* ADMIN PAGE FULL SCREEN */
-#adminPage {
-  width: 100%;
-  display: flex;
-  justify-content: center;
 }
