@@ -1,4 +1,5 @@
-// 🔑 YOUR FIREBASE CONFIG (PASTE YOURS HERE)
+
+// 🔑 FIREBASE CONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyDJ7PGMsLzI_s9U5x-FZSHOv0cEjw3lC44",
   authDomain: "homejpagey.firebaseapp.com",
@@ -11,7 +12,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 
-// LOGIN
+// -------------------- LOGIN --------------------
 function checkCode() {
   const code = document.getElementById("codeInput").value;
   const error = document.getElementById("error");
@@ -25,14 +26,18 @@ function checkCode() {
 }
 
 
-// TABS
+// -------------------- TABS --------------------
 function showTab(tabId) {
-  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
-  document.getElementById(tabId).classList.add("active");
+  document.querySelectorAll("#mainScreen .tab").forEach(t => {
+    t.classList.remove("active");
+  });
+
+  const el = document.getElementById(tabId);
+  if (el) el.classList.add("active");
 }
 
 
-// ADMIN
+// -------------------- ADMIN --------------------
 function openAdmin() {
   const code = prompt("Enter admin code:");
 
@@ -50,42 +55,48 @@ function closeAdmin() {
 }
 
 
-// REAL-TIME GAMES
+// -------------------- REAL-TIME GAMES --------------------
 db.ref("games").on("value", (snap) => {
   const data = snap.val();
   const el = document.getElementById("gamesList");
+
   el.innerHTML = "";
 
-  if (data) {
-    Object.values(data).forEach(i => {
+  if (!data) return;
+
+  Object.values(data).forEach(i => {
+    if (i?.name && i?.url) {
       el.innerHTML += `<a href="${i.url}" target="_blank">${i.name}</a>`;
-    });
-  }
+    }
+  });
 });
 
 
-// REAL-TIME SITES
+// -------------------- REAL-TIME SITES --------------------
 db.ref("sites").on("value", (snap) => {
   const data = snap.val();
   const el = document.getElementById("sitesList");
+
   el.innerHTML = "";
 
-  if (data) {
-    Object.values(data).forEach(i => {
+  if (!data) return;
+
+  Object.values(data).forEach(i => {
+    if (i?.name && i?.url) {
       el.innerHTML += `<a href="${i.url}" target="_blank">${i.name}</a>`;
-    });
-  }
+    }
+  });
 });
 
 
-// SEARCH
+// -------------------- SEARCH (FIXED SCOPE) --------------------
 function searchLinks() {
   const input = document.getElementById("search").value.toLowerCase();
-  const links = document.querySelectorAll("a");
 
-  links.forEach(l => {
-    l.style.display = l.innerText.toLowerCase().includes(input)
-      ? "block"
-      : "none";
+  const visibleLinks = document.querySelectorAll(".tab.active a");
+
+  visibleLinks.forEach(link => {
+    const match = link.innerText.toLowerCase().includes(input);
+    link.style.display = match ? "block" : "none";
   });
 }
