@@ -7,23 +7,25 @@
 
 <body>
 
-<!-- LOGIN -->
-<div id="loginBox" class="box">
-  <h2>Authorization</h2>
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" class="screen active">
+  <div class="box">
+    <h2>Authorization</h2>
 
-  <input type="text" id="codeInput" placeholder="Enter code">
-  <button onclick="checkCode()">Enter</button>
+    <input type="text" id="codeInput" placeholder="Enter code">
+    <button onclick="checkCode()">Enter</button>
 
-  <p id="error"></p>
+    <p id="error"></p>
+  </div>
 </div>
 
-<!-- MAIN APP -->
-<div id="mainPage" class="hidden">
+<!-- MAIN SCREEN -->
+<div id="mainScreen" class="screen">
 
   <div class="menu">
 
     <div class="topbar">
-      <input id="search" type="text" placeholder="Search..." onkeyup="searchLinks()">
+      <input id="search" placeholder="Search..." onkeyup="searchLinks()">
       <button onclick="openAdmin()">Admin Panel</button>
     </div>
 
@@ -32,10 +34,8 @@
       <button onclick="showTab('sites')">Websites</button>
     </div>
 
-    <!-- GAMES -->
     <div id="games" class="tab active">
       <h2>Unblocked Games</h2>
-
       <div class="scroll">
         <a href="https://solvecalc.net/" target="_blank">Unblocked Game 1</a>
         <a href="https://games.macrolorblx.com/" target="_blank">Unblocked Game 2</a>
@@ -45,10 +45,8 @@
       </div>
     </div>
 
-    <!-- WEBSITES -->
     <div id="sites" class="tab">
       <h2>Websites</h2>
-
       <div class="scroll">
         <a href="https://www.edutoolslab.com/" target="_blank">Study Tools</a>
         <a href="https://www.youtube.com" target="_blank">YouTube (No Ads)</a>
@@ -58,16 +56,23 @@
   </div>
 </div>
 
-<!-- ADMIN PAGE -->
-<div id="adminPage" class="hidden">
+<!-- ADMIN SCREEN -->
+<div id="adminScreen" class="screen">
 
   <div class="menu">
-    <h2>Admin Panel</h2>
-    <p>Welcome admin</p>
+
+    <div class="tabs">
+      <button onclick="showAdminTab('tools')">Admin Tools</button>
+    </div>
+
+    <div id="tools" class="tab active">
+      <h2>Admin Tools</h2>
+      <p>Nothing here yet.</p>
+    </div>
 
     <button onclick="closeAdmin()">Back</button>
-  </div>
 
+  </div>
 </div>
 
 <script src="script.js"></script>
