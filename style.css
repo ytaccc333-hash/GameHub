@@ -3,7 +3,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: radial-gradient(circle at top, #120018, #05010a);
+  background: radial-gradient(circle at top, #1a0033, #05010a 70%);
   color: white;
   overflow: hidden;
 }
@@ -11,7 +11,6 @@ body {
 /* ================= SCREEN SYSTEM ================= */
 .screen {
   display: none;
-  width: 100%;
   height: 100vh;
   justify-content: center;
   align-items: center;
@@ -21,58 +20,68 @@ body {
   display: flex;
 }
 
-/* ================= NEON ANIMATION ================= */
-@keyframes glow {
-  0% { box-shadow: 0 0 10px #a855f7; }
-  50% { box-shadow: 0 0 25px #d946ef; }
-  100% { box-shadow: 0 0 10px #a855f7; }
+/* ================= NEON ANIMATION BORDER ================= */
+@keyframes borderGlow {
+  0% {
+    box-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7;
+    border-color: #a855f7;
+  }
+  50% {
+    box-shadow: 0 0 20px #d946ef, 0 0 40px #a855f7;
+    border-color: #d946ef;
+  }
+  100% {
+    box-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7;
+    border-color: #a855f7;
+  }
 }
 
-/* ================= MAIN CONTAINER ================= */
-.box, .menu {
-  background: rgba(0,0,0,0.85);
-  border: 1px solid #a855f7;
-  border-radius: 16px;
-  padding: 25px;
-  width: 420px;
-  text-align: center;
-  animation: glow 2s infinite;
-  backdrop-filter: blur(10px);
+/* ================= MAIN PANEL ================= */
+.menu, .box {
+  width: 430px;
+  background: rgba(10, 10, 20, 0.75);
+  border-radius: 18px;
+  padding: 22px;
+  border: 2px solid #a855f7;
+  animation: borderGlow 3s infinite;
+  backdrop-filter: blur(14px);
 }
 
-/* ================= TOP BAR ================= */
-.topbar {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.topbar input {
-  flex: 1;
+/* subtle glass highlight */
+.menu::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 2px;
+  background: linear-gradient(45deg, #a855f7, #d946ef, #3b82f6);
+  opacity: 0.25;
+  pointer-events: none;
 }
 
 /* ================= INPUT ================= */
 input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-top: 10px;
-  background: #0f0f0f;
-  border: 1px solid #333;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.6);
   color: white;
-  border-radius: 8px;
   outline: none;
+  transition: 0.2s;
 }
 
 input:focus {
   border-color: #a855f7;
-  box-shadow: 0 0 10px #a855f7;
+  box-shadow: 0 0 12px #a855f7;
 }
 
 /* ================= BUTTON ================= */
 button {
-  padding: 10px;
-  margin-top: 10px;
   width: 100%;
+  padding: 11px;
+  margin-top: 10px;
   border: none;
   border-radius: 10px;
   background: linear-gradient(90deg, #a855f7, #d946ef);
@@ -83,25 +92,31 @@ button {
 }
 
 button:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 15px #a855f7;
+  transform: scale(1.04);
+  box-shadow: 0 0 18px #a855f7;
+}
+
+/* ================= TOP BAR ================= */
+.topbar {
+  display: flex;
+  gap: 10px;
 }
 
 /* ================= TABS ================= */
 .tabs {
   display: flex;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .tabs button {
-  width: 100%;
-  background: #111;
-  border: 1px solid #333;
+  background: rgba(20,20,20,0.8);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .tabs button:hover {
   border-color: #a855f7;
+  box-shadow: 0 0 10px #a855f7;
 }
 
 /* ================= TAB CONTENT ================= */
@@ -121,36 +136,51 @@ button:hover {
   padding-right: 5px;
 }
 
-/* ================= CLEAN LINK CARDS ================= */
+/* ================= GAME / SITE CARDS ================= */
 .linkCard {
   display: block;
-  padding: 12px;
+  padding: 14px;
   margin: 10px 0;
-  background: rgba(20,20,20,0.9);
-  border: 1px solid #2a2a2a;
   border-radius: 12px;
-  color: #d946ef;
   text-decoration: none;
-  transition: 0.2s;
-  font-weight: bold;
+  color: #d946ef;
+
+  background: rgba(20, 20, 30, 0.8);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  transition: 0.25s;
+  position: relative;
+  overflow: hidden;
 }
 
+/* animated glow line */
+.linkCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(168,85,247,0.25), transparent);
+  transition: 0.5s;
+}
+
+/* HOVER EFFECT (THIS IS THE GOOD PART) */
 .linkCard:hover {
-  transform: scale(1.03);
+  transform: translateY(-3px) scale(1.03);
   border-color: #a855f7;
-  box-shadow: 0 0 15px #a855f7;
+  box-shadow: 0 0 20px #a855f7;
   color: white;
 }
 
-/* ================= ERROR ================= */
+.linkCard:hover::before {
+  left: 100%;
+}
+
+/* ================= LOGIN ERROR ================= */
 #error {
   color: #ff4d4d;
   margin-top: 10px;
-}
-
-/* ================= ADMIN SCREEN DIFFERENCE ================= */
-#adminScreen .menu {
-  border: 1px solid #d946ef;
 }
 
 /* ================= POPUP ================= */
@@ -169,18 +199,12 @@ button:hover {
 }
 
 .popupBox {
-  background: rgba(0,0,0,0.95);
+  width: 320px;
+  background: rgba(10,10,20,0.95);
+  padding: 20px;
+  border-radius: 15px;
   border: 2px solid #a855f7;
   box-shadow: 0 0 30px #a855f7;
-  border-radius: 15px;
-  padding: 25px;
-  width: 320px;
-  text-align: center;
-}
-
-/* popup buttons */
-.popupBox button {
-  margin-top: 10px;
 }
 
 /* ================= SCROLLBAR ================= */
