@@ -1,4 +1,3 @@
-
 /* ================= BASE ================= */
 body {
   margin: 0;
@@ -14,6 +13,8 @@ body {
   height: 100vh;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .screen.active {
@@ -27,7 +28,7 @@ body {
     border-color: #a855f7;
   }
   50% {
-    box-shadow: 0 0 25px #d946ef, 0 0 45px #a855f7;
+    box-shadow: 0 0 25px #d946ef, 0 0 50px #a855f7;
     border-color: #d946ef;
   }
   100% {
@@ -36,7 +37,7 @@ body {
   }
 }
 
-/* ================= MAIN CONTAINER ================= */
+/* ================= MAIN BOX ================= */
 .menu, .box, .popupBox {
   width: 430px;
   background: rgba(15, 0, 30, 0.85);
@@ -118,13 +119,13 @@ button:hover {
   display: block;
 }
 
-/* ================= SCROLL AREA ================= */
+/* ================= SCROLL ================= */
 .scroll {
   max-height: 260px;
   overflow-y: auto;
 }
 
-/* ================= LINK CARDS (IMPORTANT) ================= */
+/* ================= LINK CARDS ================= */
 .linkCard {
   display: block;
   padding: 14px;
@@ -141,7 +142,13 @@ button:hover {
   overflow: hidden;
 }
 
-/* animated shine */
+.linkCard:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 0 25px #a855f7;
+  color: white;
+}
+
+/* shine effect */
 .linkCard::before {
   content: "";
   position: absolute;
@@ -153,18 +160,11 @@ button:hover {
   transition: 0.5s;
 }
 
-/* hover effect */
-.linkCard:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 0 25px #a855f7;
-  color: white;
-}
-
 .linkCard:hover::before {
   left: 100%;
 }
 
-/* ================= POPUP ================= */
+/* ================= POPUP (IMPORTANT FIX) ================= */
 .popup {
   position: fixed;
   inset: 0;
@@ -173,6 +173,8 @@ button:hover {
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(10px);
+
+  z-index: 9999; /* 🔥 THIS FIXES YOUR ISSUE */
 }
 
 .popup.hidden {
