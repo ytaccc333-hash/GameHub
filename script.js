@@ -10,6 +10,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
+console.log("SCRIPT LOADED");
+
 
 // LOGIN
 function checkCode() {
@@ -42,12 +44,15 @@ function closeAdminPopup() {
   document.getElementById("adminError").textContent = "";
 }
 
+
+// ADMIN LOGIN
 function checkAdminCode() {
   const code = document.getElementById("adminCodeInput").value;
 
   if (code === "7765") {
     closeAdminPopup();
     document.getElementById("adminScreen").classList.add("active");
+    adminTab("addGame");
   } else {
     document.getElementById("adminError").textContent = "Wrong code!";
   }
