@@ -10,8 +10,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-console.log("SCRIPT LOADED");
-
 
 // LOGIN
 function checkCode() {
@@ -26,10 +24,16 @@ function checkCode() {
 }
 
 
-// TABS
+// MAIN TABS
 function showTab(tabId) {
-  document.querySelectorAll("#games, #sites").forEach(t => t.style.display = "none");
-  document.getElementById(tabId).style.display = "block";
+  document.querySelectorAll("#games, #sites").forEach(t => {
+    t.classList.remove("active");
+    t.style.display = "none";
+  });
+
+  const el = document.getElementById(tabId);
+  el.classList.add("active");
+  el.style.display = "block";
 }
 
 
@@ -40,8 +44,8 @@ function openAdmin() {
 
 function closeAdminPopup() {
   document.getElementById("adminPopup").classList.add("hidden");
-  document.getElementById("adminCodeInput").value = "";
   document.getElementById("adminError").textContent = "";
+  document.getElementById("adminCodeInput").value = "";
 }
 
 
